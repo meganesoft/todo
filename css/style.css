@@ -1,0 +1,31 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: #4f639f;
+}
+
+.container{
+    max-width: 400px;
+}
+
+input[type=text],
+input[type=text]:focus{
+    color: #9abca4;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    max-width: 400px;
+}
+
+/* 追加 */
+.todos li {
+    background: #2c4b79;
+}
+
+/* 追加 */
+.delete {
+    cursor: pointer;
+    color: orange;
+}
+
+.filtered {
+    display : none !important;
+}
