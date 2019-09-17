@@ -13,26 +13,26 @@ const search = document.querySelector('.search input');
     }
 })();
 
-const saveTaskToLocalStorage = (task, html) => {
+const saveTaskToLocalStorage = (task,day_data, html) => {
     // null は、localStorage に保存しない
     if(html){
         // localStorage は、0 から始まる
-        localStorage.setItem(task, html);
+        localStorage.setItem(task,day_data, html);
         return;
     }
     return;
 }
 
-const deleteTaskFromLocalStorage = task => {
-    localStorage.removeItem(task);
+const deleteTaskFromLocalStorage = (task,day_data) => {
+    localStorage.removeItem(task,day_data);
     return;
 }
 
-const createTodoList = task => {
+const createTodoList = (task,day_data) => {
     const html = `
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>${task}</span>
-        <i class="fa fa-calendar calendar" aria-hidden="true"></i>
+        <input type="date" class="date" value=${day_data}></input>
         <i class="far fa-trash-alt delete"></i>
     </li>
     `;
@@ -59,16 +59,23 @@ addTask.addEventListener('submit', e => {
 // 削除機能
 list.addEventListener('click', e => {
     if (e.target.classList.contains('delete')){
-        e.target.parentElement.remove();
+        if(!e.target.classList.contains('date')){
+            e.target.parentElement.remove();
+        }
     }
     const task = e.target.parentElement.textContent.trim()
-    deleteTaskFromLocalStorage(task);
+    const day_data = e.target.parentElement.value()
+    console.log(day_data)
+    deleteTaskFromLocalStorage(task,day_data);
 });
 
-list.addEventListener('click',e=>{
-    if(e.target.classList.contains('calendar')){
-        console.log('hello')
+list.addEventListener('click', e => {
+    const task = e.target.parentElement.textContent.trim()
+    const day_data = e.target.parentElement.value()
+    if (e.target.classList.contains('date')){
+        saveTaskToLocalStorage(task, html); 
     }
+    
 });
 
 
