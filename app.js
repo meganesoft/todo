@@ -13,11 +13,11 @@ const search = document.querySelector('.search input');
     }
 })();
 
-const saveTaskToLocalStorage = (task,day_data, html) => {
+const saveTaskToLocalStorage = (task,html) => {
     // null は、localStorage に保存しない
     if(html){
         // localStorage は、0 から始まる
-        localStorage.setItem(task,day_data, html);
+        localStorage.setItem(task,html);
         return;
     }
     return;
@@ -32,14 +32,14 @@ const createTodoList = (task,day_data) => {
     const html = `
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>${task}</span>
-        <input type="date" class="date" value=${day_data.value}></input>
+        <input type="date" class="date" value=${day_data}></input>
         <i class="far fa-trash-alt delete"></i>
     </li>
     `;
 
     list.innerHTML += html;
 
-    saveTaskToLocalStorage(task,day_data.value,html); 
+    saveTaskToLocalStorage(task,html); 
 }
 
 addTask.addEventListener('submit', e => {
@@ -52,7 +52,7 @@ addTask.addEventListener('submit', e => {
     console.log(day_data)
     if(task.length) {
         // Todo List の HTML を作成
-        createTodoList(task,day_data);
+        createTodoList(task,day_data.value);
         // タスクに入力した文字をクリア
         addTask.reset();
     }
@@ -72,14 +72,33 @@ list.addEventListener('click', e => {
 });
 
 list.addEventListener('click', e => {
-    const task = e.target.parentElement.textContent.trim()
-    //const day_data = e.target.parentElement.value()
-    //if (e.target.classList.contains('date')){
-    //    saveTaskToLocalStorage(task, html); 
-    //}
-    
+    if(e.target.classList.contains('submit')){
+            // デフォルトのイベントを無効
+        e.preventDefault();
+
+        // タスクに入力した値を空白を除外して格納
+        const task = addTask.add.value.trim();
+        let day_data = document.querySelector('.foo')
+        console.log(day_data)
+        if(task.length) {
+            // Todo List の HTML を作成
+            createTodoList(task,day_data.value);
+            // タスクに入力した文字をクリア
+            addTask.reset();
+        }
+    }
 });
 
+//リセット機能
+list.addEventListener('click',e =>{
+    if(e.target.classList.contains('clear')){
+        window.localStorage.clear();
+    }
+})
+
+const value_clear = () =>{
+    window.localStorage.clear();
+}
 
 
 const filterTasks = (term) => {

@@ -15,6 +15,14 @@ input[type=text]:focus{
     max-width: 400px;
 }
 
+input[type=date],
+input[type=date]:focus{
+    color: #9abca4;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    max-width: 400px;
+}
+
 /* 追加 */
 .todos li {
     background: #2c4b79;
@@ -28,4 +36,23 @@ input[type=text]:focus{
 
 .filtered {
     display : none !important;
+}
+
+.submit{
+    display: inline-block;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 8px #627295;
+  border-radius: 4px;
+}
+.clear{
+    display: inline-block;
+    padding: 0.5em 2em;
+    text-decoration: none;
+    background: #d45e0e;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 8px #b47016;
+    border-radius: 4px;
 }

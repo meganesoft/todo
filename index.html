@@ -24,9 +24,17 @@
         </ul>
 
         <form class="add text-center my-4">
-            <label class="text-light">ADDING TASK</label>
-            <input type="text" class="form-control m-auto" name="add" placeholder="New Text">
-            <input type="date" class="foo" name="add_day" id="foo" >
+            <ul>
+                <li class="task">
+                    <label class="text-light">ADDING TASK</label>
+                    <input type="text" class="form-control m-auto" name="add" placeholder="New Text">
+                    <input type="date" class="foo" name="add_day" id="foo" >
+                </li>
+                <li class="button">
+                    <input type="submit" class="submit" value="反映">
+                    <input type="button" class="clear" value="リセット" onclick="value_clear()">
+                </li>
+        </ul>
         </form>
     </div>
     <script src="app.js"></script>
