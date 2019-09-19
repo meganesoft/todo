@@ -48,9 +48,11 @@ addTask.addEventListener('submit', e => {
 
     // タスクに入力した値を空白を除外して格納
     const task = addTask.add.value.trim();
+    var day_data = document.getElementsByClassName("calender").value
+    console.log(day_data)
     if(task.length) {
         // Todo List の HTML を作成
-        createTodoList(task);
+        createTodoList(task,day_data);
         // タスクに入力した文字をクリア
         addTask.reset();
     }
@@ -71,7 +73,9 @@ list.addEventListener('click', e => {
 
 list.addEventListener('click', e => {
     const task = e.target.parentElement.textContent.trim()
-    const day_data = e.target.parentElement.value()
+    //const day_data = e.target.parentElement.value()
+    var day_data = document.getElementsByClassName("calender").value
+    console.log(day_data)
     if (e.target.classList.contains('date')){
         saveTaskToLocalStorage(task, html); 
     }
