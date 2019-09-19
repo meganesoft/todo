@@ -32,14 +32,14 @@ const createTodoList = (task,day_data) => {
     const html = `
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>${task}</span>
-        <input type="date" class="date" value=${day_data}></input>
+        <input type="date" class="date" value=${day_data.value}></input>
         <i class="far fa-trash-alt delete"></i>
     </li>
     `;
 
     list.innerHTML += html;
 
-    saveTaskToLocalStorage(task, html); 
+    saveTaskToLocalStorage(task,day_data.value,html); 
 }
 
 addTask.addEventListener('submit', e => {
@@ -48,7 +48,7 @@ addTask.addEventListener('submit', e => {
 
     // タスクに入力した値を空白を除外して格納
     const task = addTask.add.value.trim();
-    var day_data = document.getElementsByClassName("calender").value
+    let day_data = document.querySelector('.foo')
     console.log(day_data)
     if(task.length) {
         // Todo List の HTML を作成
@@ -74,11 +74,9 @@ list.addEventListener('click', e => {
 list.addEventListener('click', e => {
     const task = e.target.parentElement.textContent.trim()
     //const day_data = e.target.parentElement.value()
-    var day_data = document.getElementsByClassName("calender").value
-    console.log(day_data)
-    if (e.target.classList.contains('date')){
-        saveTaskToLocalStorage(task, html); 
-    }
+    //if (e.target.classList.contains('date')){
+    //    saveTaskToLocalStorage(task, html); 
+    //}
     
 });
 
